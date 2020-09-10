@@ -10,7 +10,7 @@ const port = 1337;
 
 const middleware = require("./middleware/index.js");
 const index = require('./routes/index');
-const hello = require('./routes/hello');
+// const register = require('./routes/register');
 
 // log incoming to console
 // app.use(middleware.logIncoming);
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 //My imported routes
 app.use('/', index);
-app.use('/hello', hello);
+// app.use('/register', register);
 
 // Add routes for 404 and error handling
 // Catch 404 and forward to error handler
