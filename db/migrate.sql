@@ -4,6 +4,8 @@ CREATE TABLE IF NOT EXISTS users (
     UNIQUE(email)
 );
 
+DROP TABLE IF EXISTS reports;
+
 CREATE TABLE IF NOT EXISTS reports (
     week INT NOT NULL,
     "text" VARCHAR(1000),
@@ -89,8 +91,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify");
 
 INSERT INTO reports (week, "text") VALUES(2, "## Mina Githubrepo för frontend/backend
-     https://github.com/bjorn-87/my-react-app-frontend
-     https://github.com/bjorn-87/me-express-backend
+https://github.com/bjorn-87/my-react-app-frontend <br>
+https://github.com/bjorn-87/me-express-backend
 
 repoThis is my backend repo for the course jsramverk at Blekinge Tekniska Högskola
 
@@ -98,6 +100,13 @@ repoThis is my backend repo for the course jsramverk at Blekinge Tekniska Högsk
 
 ### `npm install`
 First download this repo and then run the command.
+
+### `Set up the database`
+Open your terminal and navigate to me-express-backend/db.
+then run following command:<br>
+`sqlite3 texts.sqlite`<br>
+`.read migrate.sql`<br>
+`.exit`
 
 ### `npm start`
 Runs the app in the development mode.

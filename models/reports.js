@@ -70,6 +70,7 @@ var checkToken = function(req, res, next) {
                 }
             });
         }
+        console.log(token);
         next();
     });
 }
@@ -78,9 +79,13 @@ var checkToken = function(req, res, next) {
  * Function to edit a report.
  */
 var editReport = function(res, body) {
-    db.run("UPDATE reports SET text = ? WHERE week = ?"),
-    body.text,
-    body.week, (err) => {
+    const week = parseInt(body.week);
+    const text = body.text;
+    console.log(week);
+    console.log(text);
+    db.run("UPDATE reports SET text = ? WHERE week = ?",
+    text,
+    week, (err) => {
         if (err) {
             return res.status(500).json({
                 error: {
@@ -91,24 +96,27 @@ var editReport = function(res, body) {
                 }
             });
         }
-        res.status(201).json({
+        return res.status(200).json({
             data: {
                 msg: "Report successfully updated"
             }
         });
-    }
+    });
 }
 
 /**
  * Function to add a report.
  */
 var addReport = function(res, body) {
-    db.run("INSERT INTO reports (week, text) VALUES (?, ?)"),
-    body.week,
-    body.text, (err) => {
+    const week = parseInt(body.week);
+    const text = body.text;
+
+    db.run("INSERT INTO reports (week, text) VALUES (?, ?)",
+    week,
+    text, (err) => {
         if (err) {
             return res.status(500).json({
-                error: {
+                errors: {
                     status: 500,
                     source: "/register/edit",
                     title: "Databas error",
@@ -122,6 +130,7 @@ var addReport = function(res, body) {
             }
         });
     }
+    )
 }
 
 module.exports = {
