@@ -70,7 +70,7 @@ var checkToken = function(req, res, next) {
                 }
             });
         }
-        console.log(token);
+        // console.log(token);
         next();
     });
 }
@@ -81,8 +81,8 @@ var checkToken = function(req, res, next) {
 var editReport = function(res, body) {
     const week = parseInt(body.week);
     const text = body.text;
-    console.log(week);
-    console.log(text);
+    // console.log(week);
+    // console.log(text);
     db.run("UPDATE reports SET text = ? WHERE week = ?",
     text,
     week, (err) => {
