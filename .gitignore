@@ -6,3 +6,7 @@
 *.sqlite
 
 config.json
+
+coverage
+
+.nyc_output

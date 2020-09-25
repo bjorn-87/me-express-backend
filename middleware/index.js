@@ -10,6 +10,7 @@ var logIncoming = function(req, res, next) {
 // Put this last
 var fourOFourHandler = (req, res, next) => {
     var err = new Error("Not Found");
+
     err.status = 404;
     next(err);
 };

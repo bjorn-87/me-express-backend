@@ -3,7 +3,7 @@ const router = express.Router();
 
 const login = require('../models/login');
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     const data = {
         data: {
             msg: "Login"
@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     res.json(data);
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res) {
     login.loginUser(res, req.body);
 });
 

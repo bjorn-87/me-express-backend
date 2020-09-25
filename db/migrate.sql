@@ -1,8 +1,13 @@
+
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(60) NOT NULL,
     UNIQUE(email)
 );
+
+INSERT INTO users (email, password) VALUES ("test@bjos19.me", "$2a$10$S78ForDoXACqQd0ofKZFAeWYDSBBH.03wPX.zSDAPEVZcYMXxvz/6");
 
 DROP TABLE IF EXISTS reports;
 

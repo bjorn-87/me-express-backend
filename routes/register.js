@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./db/texts.sqlite');
+const db = require('../db/database.js');
 
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     const data = {
         data: {
             msg: "Register a user"
@@ -16,13 +15,14 @@ router.get('/', function(req, res, next) {
     res.json(data);
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res) {
     registerUser(res, req.body);
 });
 
 function registerUser(res, body) {
     const email = body.email;
     const password = body.password;
+
     if (!email || !password) {
         return res.status(401).json({
             errors: {
@@ -42,31 +42,30 @@ function registerUser(res, body) {
                     title: "bcrypt error",
                     detail: "bcrypt error"
                 }
-            })
+            });
         }
 
         db.run("INSERT INTO users (email, password) VALUES (?, ?)",
             email,
             hash, (err) => {
-            if (err) {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/register",
-                        title: "Database error",
-                        detail: err.message
+                if (err) {
+                    return res.status(500).json({
+                        errors: {
+                            status: 500,
+                            source: "/register",
+                            title: "Database error",
+                            detail: err.message
+                        }
+                    });
+                }
+
+                res.status(201).json({
+                    data: {
+                        msg: "User successfully registered"
                     }
                 });
-            }
-
-            res.status(201).json({
-                data: {
-                    msg: "User successfully registered"
-                }
             });
-        });
-
     });
-};
+}
 
 module.exports = router;
