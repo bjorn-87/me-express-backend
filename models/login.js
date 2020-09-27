@@ -10,7 +10,7 @@ try {
     console.error(error);
 }
 
-const secret = config.secret;
+const secret = process.env.JWT_SECRET || config.secret;
 
 var loginUser = function(res, body) {
     const email = body.email;

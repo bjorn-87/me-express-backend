@@ -9,7 +9,8 @@ try {
     console.error(error);
 }
 
-const secret = config.secret;
+const secret = process.env.JWT_SECRET || config.secret;
+
 
 /**
  * Function to get all reports.
