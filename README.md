@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bjorn-87/me-express-backend.svg?branch=master)](https://travis-ci.org/bjorn-87/me-express-backend)
+
 This is my backend repo for the course jsramverk at Blekinge Tekniska Högskola
 
 ## Download and install
